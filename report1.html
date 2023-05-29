@@ -1,0 +1,250 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <script src="https://unpkg.com/three@0.137.4/build/three.min.js"></script>
+    <script src="https://unpkg.com/three@0.137.4/examples/js/controls/OrbitControls.js"></script>
+</head>
+
+<body>
+    <script>
+        // ページの読み込みを待つ
+        window.addEventListener('DOMContentLoaded', init);
+
+        function init() {
+            // サイズを指定
+            const width = 800
+            const height = 600;
+
+            // レンダラーを作成
+            var renderer = new THREE.WebGLRenderer();
+            document.body.appendChild(renderer.domElement);
+            renderer.setSize(width, height);
+
+            // レンダラー：シャドウを有効にする
+            renderer.shadowMap.enabled = true;
+
+            // シーンを作成
+            const scene = new THREE.Scene();
+
+            // カメラを作成
+            const camera = new THREE.PerspectiveCamera(45, width / height);
+            // カメラの初期座標を設定
+            camera.position.set(0, 0, 10);
+
+            // カメラコントローラーを作成
+            const controls = new THREE.OrbitControls(camera, document.body);
+
+            
+            // 平行光源1
+            var directionalLight1 = new THREE.DirectionalLight(0xffffff);
+            directionalLight1.position.set(10, 10, 10);
+            // シーンに追加
+            scene.add(directionalLight1);
+            // 平行光源2
+            var directionalLight2 = new THREE.DirectionalLight(0x888888);
+            directionalLight2.position.set(-10, -10, 10);
+            // シーンに追加
+            scene.add(directionalLight2);
+            
+
+            // 照明を作成
+            const light = new THREE.SpotLight(0xFFFFFF, 4, 50, Math.PI / 4, 1);
+            // ライトに影を有効にする
+            light.castShadow = true;
+            scene.add(light);
+
+
+            // helper
+            const gridHelper = new THREE.GridHelper(2, 10); // size, step
+            scene.add(gridHelper);
+            const axisHelper = new THREE.AxisHelper(5); //軸の長さ　X：赤、Y：緑、z：青
+            scene.add(axisHelper);
+
+            // 平面を作成
+            var planeGeometry = new THREE.PlaneGeometry(5, 5, 10, 10); //縦、横、分割数、分割数
+            var planeMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+            var plane = new THREE.Mesh(planeGeometry, planeMaterial);
+            plane.rotation.set(-Math.PI / 2, 0, 0);
+            plane.position.set(0, 0, 0);
+            //影を受ける
+            plane.receiveShadow = true;
+            scene.add(plane);
+
+            // いろいろなマテリアルの実験
+            var material_white = new THREE.MeshLambertMaterial({ color: 0xffffff });
+            var material_green = new THREE.MeshLambertMaterial({ color: 0x00ff00 });
+            var material_red = new THREE.MeshLambertMaterial({ color: 0xff0000 });
+            var material_brown = new THREE.MeshLambertMaterial({ color: 0x90623c });
+            //var material = new THREE.MeshPhongMaterial({ color: 0x0000ff, specular:0xffff00, shininess:4 });
+            //var material = new THREE.MeshPhongMaterial({ color: 0xff0000, emissive: 0xffff00, emissiveIntensity: 2 });
+            //var material = new THREE.MeshToonMaterial({ color: 0xf00000 });
+            //var material = new THREE.MeshStandardMaterial({ color: 0xa00000 });
+
+            const geometry = new THREE.CylinderGeometry(5, 5, 20, 32);
+            scene.add(cylinder);
+
+            // 球を作成
+            var ball_geometry = new THREE.SphereGeometry(0.4, 32, 32);
+            var material_b = new THREE.MeshPhongMaterial({ color: 0x0000ff });
+            var ball = new THREE.Mesh(ball_geometry, material_green);
+            ball.position.set(0, 2.4, 0);
+
+            var ball2 = new THREE.Mesh(ball_geometry, material_white);
+            ball2.position.set(0, 3.2, 0);
+
+            var ball3 = new THREE.Mesh(ball_geometry, material_red);
+            ball3.position.set(0, 4, 0);
+
+            var geometry_2 = new THREE.CylinderGeometry(0.05, 0.05, 1.5, 32);
+            var cylinder = new THREE.Mesh(geometry_2, material_brown);
+            cylinder.position.set(0, 1.5, 0);
+            const dango = new THREE.Group();
+            dango.add(ball);
+            dango.add(ball2);
+            dango.add(ball3);
+            dango.add(cylinder);
+            dango.rotation.z = - Math.PI / 4;
+            dango.rotation.y = - Math.PI / 4;
+            scene.add(dango);
+
+            var ball4 = new THREE.Mesh(ball_geometry, material_green);
+            ball4.position.set(0, 2.4, 0);
+            var ball5 = new THREE.Mesh(ball_geometry, material_white);
+            ball5.position.set(0, 3.2, 0);
+            var ball6 = new THREE.Mesh(ball_geometry, material_red);
+            ball6.position.set(0, 4, 0);
+            var cylinder2 = new THREE.Mesh(geometry_2, material_brown);
+            cylinder2.position.set(0, 1.5, 0);
+
+            const dango2 = new THREE.Group();
+            dango2.add(ball4);
+            dango2.add(ball5);
+            dango2.add(ball6);
+            dango2.add(cylinder2);
+            dango2.rotation.z = Math.PI / 4;
+            dango2.rotation.y = Math.PI / 4;
+            scene.add(dango2);
+
+            var ball7 = new THREE.Mesh(ball_geometry, material_green);
+            ball7.position.set(0, 2.4, 0);
+            var ball8 = new THREE.Mesh(ball_geometry, material_white);
+            ball8.position.set(0, 3.2, 0);
+            var ball9 = new THREE.Mesh(ball_geometry, material_red);
+            ball9.position.set(0, 4, 0);
+            var cylinder3 = new THREE.Mesh(geometry_2, material_brown);
+            cylinder3.position.set(0, 1.5, 0);
+
+            const dango3 = new THREE.Group();
+            dango3.add(ball7);
+            dango3.add(ball8);
+            dango3.add(ball9);
+            dango3.add(cylinder3);
+            dango3.rotation.z = -Math.PI / 4;
+            dango3.rotation.y = Math.PI / 4;
+            scene.add(dango3);
+
+            var ball10 = new THREE.Mesh(ball_geometry, material_green);
+            ball10.position.set(0, 2.4, 0);
+            var ball11 = new THREE.Mesh(ball_geometry, material_white);
+            ball11.position.set(0, 3.2, 0);
+            var ball12 = new THREE.Mesh(ball_geometry, material_red);
+            ball12.position.set(0, 4, 0);
+            var cylinder4 = new THREE.Mesh(geometry_2, material_brown);
+            cylinder4.position.set(0, 1.5, 0);
+
+            const dango4 = new THREE.Group();
+            dango4.add(ball10);
+            dango4.add(ball11);
+            dango4.add(ball12);
+            dango4.add(cylinder4);
+            dango4.rotation.z = Math.PI / 4;
+            dango4.rotation.y = -Math.PI / 4;
+            scene.add(dango4);
+
+            // ドーナツを作成
+            const geometry_4 = new THREE.TorusGeometry(300, 100, 64, 100);
+            // マテリアルを作成
+            const material = new THREE.MeshLambertMaterial({ color: 0xFFFFFF });
+            // メッシュを作成
+            const donuts = new THREE.Mesh(geometry_4, material);
+            donuts.scale.set(0.001, 0.001, 0.001);
+            donuts.rotation.set(Math.PI / 2, 0, 0);
+            donuts.castShadow = true;
+            // 3D空間にメッシュを追加
+            scene.add(donuts);
+
+            var ball_x = new THREE.Mesh( new THREE.SphereGeometry(0.4, 32, 32), new THREE.MeshPhongMaterial({ color: 0xffdd00 }));
+            ball_x.position.set(0, 4, 0);
+            ball_x.castShadow = true;
+            scene.add(ball_x);
+
+            const all_dango = new THREE.Group();
+             // 影を落とす
+             all_dango.castShadow = true;
+            all_dango.add(dango);
+            all_dango.add(dango2);
+            all_dango.add(dango3);
+            all_dango.add(dango4);
+
+            //全体のオブジェクト
+            const all = new THREE.Group();
+            all.add(all_dango);
+            all.add(plane);//平面を追加
+            all.position.set(0, 0, 0);//全体グループの原点の位置
+
+            scene.add(all);
+            move_y = 0.04;
+            ball_size = 0.2;
+            ball_move = -0.04;
+            update();
+
+            // 毎フレーム時に実行されるループイベントです
+            function update() {
+                // レンダリング
+                renderer.render(scene, camera);
+                // 照明の位置を更新
+                const t = Date.now() / 1000;
+                const r = 10.0;
+                const lx = r * Math.cos(t);
+                const lz = r * Math.sin(t);
+                const ly = 5.0 + 5.0 * Math.sin(t / 3.0);
+                light.position.set(lx, ly, lz);
+                light.lookAt(new THREE.Vector3(0, 0, 0));
+
+                if (donuts.position.y >= 4) {
+                    move_y *= -1;
+                    donuts.scale.set(donuts.position.y * 0.001, donuts.position.y * 0.001, donuts.position.y * 0.001);
+                }
+                else if(donuts.position.y <= -0.001) {
+                    move_y *= -1;
+                    donuts.scale.set(donuts.position.y * 0.001, donuts.position.y * 0.001, donuts.position.y * 0.001);
+                }
+                donuts.position.y += move_y;
+                donuts.scale.set(donuts.position.y * 0.001, donuts.position.y * 0.001, donuts.position.y * 0.001);
+
+                if(ball_x.position.y <= -0.001){
+                    ball_move *= -1;
+                    ball_x.scale.set(ball_x.position.y * ball_size, ball_x.position.y * ball_size, ball_x.position.y * ball_size);
+                }
+                else if(ball_x.position.y >= 4){
+                    ball_move *= -1;
+                    ball_x.scale.set(ball_x.position.y * ball_size, ball_x.position.y * ball_size, ball_x.position.y * ball_size);
+                }
+                ball_x.position.y -= ball_move;
+                ball_x.scale.set(ball_x.position.y * ball_size, ball_x.position.y * ball_size, ball_x.position.y * ball_size);
+
+
+                // 団子を回転させる
+                all_dango.rotation.y += 0.03;
+
+                // 全体を回転させる
+                //all.rotation.x += 0.01;
+                all.rotation.y += 0.005;
+                requestAnimationFrame(update);
+            }
+        }
+    </script>
+</body>
+
+</html>
