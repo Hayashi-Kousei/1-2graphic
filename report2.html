@@ -56,7 +56,8 @@
         var textureLoader = new THREE.TextureLoader();  
         var texture = textureLoader.load("img/alien2.png");
         const material = new THREE.SpriteMaterial({ map: texture,});
-
+        
+        cost aliens = new THREE.Group();
         // 森を作成
         for (let i = 0; i < 30; i++) {
           const sprite = new THREE.Sprite(material);
@@ -66,9 +67,9 @@
           sprite.position.z = 3 * (Math.random() - 0.5);
           // スケールを調整
           sprite.scale.set(0.5, 0.5, 0.5);
-
-          scene.add(sprite);
+          aliens.add(sprite)
         }
+         scene.add(aliens);
         
         var textureLoader = new THREE.TextureLoader();
         var texture = textureLoader.load("stone.jpg");
@@ -103,7 +104,7 @@
           renderer.render(scene, camera);
           requestAnimationFrame(update);
           sprite.rotation.x += 0.01;
-          sprite.rotation.y += 0.1 *Math.random();
+          sprite.rotation.y += 0.01;
         }
       }
     </script>
