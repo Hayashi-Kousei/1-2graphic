@@ -57,7 +57,7 @@
         var texture = textureLoader.load("img/alien2.png");
         const material = new THREE.SpriteMaterial({ map: texture,});
         
-        cost aliens = new THREE.Group();
+        const aliens = new THREE.Group();
         // 森を作成
         for (let i = 0; i < 30; i++) {
           const sprite = new THREE.Sprite(material);
