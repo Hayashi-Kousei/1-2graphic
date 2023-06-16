@@ -56,7 +56,7 @@
         var plane_textureLoader = new THREE.TextureLoader();
         var plane_texture = textureLoader.load("img/suna.png");
         var plane_mat = new THREE.MeshPhongMaterial();
-        plane_mat.map = texture;
+        plane_mat.map = plane_texture;
         
         var planeGeometry = new THREE.PlaneGeometry(5, 5, 10, 10); //縦、横、分割数、分割数
        
