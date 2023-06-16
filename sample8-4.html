@@ -84,6 +84,17 @@
         box.position.set(1.5,0,-5);
         scene.add(box);
         */
+        var plane_textureLoader = new THREE.TextureLoader();
+        var plane_texture = textureLoader.load("img/suna.png");
+        var plane_mat = new THREE.MeshPhongMaterial();
+        plane_mat.map = plane_texture;
+        var planeGeometry = new THREE.PlaneGeometry(5, 5, 10, 10); //縦、横、分割数、分割数
+        var plane = new THREE.Mesh(planeGeometry, plane_mat);
+        plane.rotation.set(-Math.PI / 2, 0, 0);
+        plane.position.set(0, 0, 0);
+        //影を受ける
+        plane.receiveShadow = true;
+        scene.add(plane);
         update();
 
         // 毎フレーム時に実行されるループイベントです
