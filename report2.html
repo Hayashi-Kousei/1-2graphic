@@ -115,7 +115,9 @@
           // レンダリング
           renderer.render(scene, camera);
           requestAnimationFrame(update);
+          aliens.rotation.y += (Math.random()*0.1);
           aliens.position.y += (Math.random()*0.1);
+          aliens.rotation.y -= (Math.random()*0.1);
           aliens.position.y -= (Math.random()*0.1);
         }
       }
