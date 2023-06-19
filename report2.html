@@ -96,6 +96,18 @@
         //影を受ける
         plane.receiveShadow = true;
         scene.add(plane);
+        
+        
+        var ball_texture = textureLoader.load("img/Mars.png")
+        var ball_mat = new THREE.MeshPhongMaterial();
+        ball_mat.map = texture;
+        //球を作る
+        var ball_geometry = new THREE.SphereGeometry(0.4, 32, 32);
+        var ball = new THREE.Mesh(ball_geometry, ball_mat);
+        ball.position.set(0, 2.4, 0);
+        ball.receiveShadow = true;
+        scene.add(ball);
+        
         update();
 
         // 毎フレーム時に実行されるループイベントです
