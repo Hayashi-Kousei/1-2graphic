@@ -100,7 +100,8 @@
         
         var ball_texture = textureLoader.load("img/marsmap1k.jpg")
         var ball_mat = new THREE.MeshPhongMaterial();
-        ball_mat.map = ball_texture;
+        ball_mat.bumpMap = ball_texture;
+        ball_mat.bumpscale = 0.3;
         //球を作る
         var ball_geometry = new THREE.SphereGeometry(0.4, 32, 32);
         var ball = new THREE.Mesh(ball_geometry, ball_mat);
