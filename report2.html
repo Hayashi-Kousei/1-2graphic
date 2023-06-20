@@ -103,8 +103,8 @@
         ball_mat.map = ball_texture;
         var ball_bump = ball_textureloader.load("img/marsmap1k.jpg");
         ball_mat.bumpMap = ball_bump;
-        //ball_mat.shininess = 10;
-        ball_mat.bumpscale = 0.1;
+        ball_mat.shininess = 10;
+        ball_mat.bumpscale = 0.2;
         //球を作る
         var ball_geometry = new THREE.SphereGeometry(0.4, 32, 32);
         var ball = new THREE.Mesh(ball_geometry, ball_mat);
@@ -119,6 +119,7 @@
           // レンダリング
           renderer.render(scene, camera);
           requestAnimationFrame(update);
+          ball.rotation.x += 0.001;
           aliens.rotation.y += (Math.random()*0.1);
           if(aliens.position.y <= 0.4){
              aliens.position.y += (Math.random()*0.1);
