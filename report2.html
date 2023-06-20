@@ -104,9 +104,9 @@
         var ball_bump = ball_textureloader.load("img/marsmap1k.jpg");
         ball_mat.bumpMap = ball_bump;
         ball_mat.shininess = 10;
-        ball_mat.bumpscale = 0.5;
+        ball_mat.bumpscale = 0.7;
         //球を作る
-        var ball_geometry = new THREE.SphereGeometry(0.4, 32, 32);
+        var ball_geometry = new THREE.SphereGeometry(1, 32, 32);
         var ball = new THREE.Mesh(ball_geometry, ball_mat);
         ball.position.set(0, 2.4, 0);
         ball.receiveShadow = true;
