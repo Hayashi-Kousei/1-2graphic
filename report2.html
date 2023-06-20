@@ -123,7 +123,7 @@
         scene.add(mars);
 
         var ball_textureloader2 = new THREE.TextureLoader();
-        var ball_texture2 = ball_textureloader2.load("img/marsmap1k.jpg")
+        var ball_texture2 = ball_textureloader2.load("img/jupiter2_1k.jpg");
         var ball_mat2 = new THREE.MeshPhongMaterial();
         ball_mat2.map = ball_texture2;
         var ball_bump2 = ball_textureloader2.load("img/jupiter2_1k.jpg");
@@ -157,7 +157,7 @@
           ball.rotation.y += 0.01;
           mars.rotation.y += 0.02;
           ball2.rotation.y += 0.012;
-          jupiter.rotation.x += 0.03;
+          //jupiter.rotation.x += 0.03;
           jupiter.rotation.z += 0.03;
           aliens.rotation.y += (Math.random()*0.1);
           if(aliens.position.y <= 0.4){
