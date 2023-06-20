@@ -121,6 +121,31 @@
         mars.add(ball);
         mars.add(just_ball);
         scene.add(mars);
+
+        var ball_textureloader2 = new THREE.TextureLoader();
+        var ball_texture2 = ball_textureloader2.load("img/marsmap1k.jpg")
+        var ball_mat2 = new THREE.MeshPhongMaterial();
+        ball_mat2.map = ball_texture2;
+        var ball_bump2 = ball_textureloader2.load("img/jupiter2_1k.jpg");
+        ball_mat2.bumpMap = ball_bump2;
+        ball_mat2.shininess = 10;
+        ball_mat2.bumpscale = 0.7;
+        //球を作る
+        var ball_geometry2 = new THREE.SphereGeometry(1, 32, 32);
+        var ball2 = new THREE.Mesh(ball_geometry2, ball_mat2);
+        ball2.position.set(2, 4.4, 2);
+        ball2.receiveShadow = true;
+        //scene.add(ball2);
+        
+        var just_ball_geometry2 = new THREE.SphereGeometry(0,0,0);
+        var just_ball2 = new THREE.Mesh(ball_geometry2, ball_mat2);
+        just_ball2.position.set(2,4.4,-2);
+        just_ball2.scale.set(0,0,0);
+        
+        const jupiter = new THREE.Group();
+        jupiter.add(ball2);
+        jupiter.add(just_ball2);
+        scene.add(jupiter);
         
         update();
 
@@ -131,6 +156,9 @@
           requestAnimationFrame(update);
           ball.rotation.y += 0.01;
           mars.rotation.y += 0.02;
+          ball2.rotation.y += 0.012;
+          jupiter.rotation.x += 0.03;
+          jupiter.rotation.z += 0.03;
           aliens.rotation.y += (Math.random()*0.1);
           if(aliens.position.y <= 0.4){
              aliens.position.y += (Math.random()*0.1);
