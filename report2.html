@@ -5,8 +5,12 @@
     <script src="https://unpkg.com/three@0.137.4/examples/js/controls/OrbitControls.js"></script>
   </head>
 <body>
- <h1>森を作成</h1>
- ループで２０本の気を作った<br>
+ <h1>球体と板の作成</h1
+ <p>
+   球体にはインターネットから拾った火星と木星の使いました。その二つを球体にバンプマップし、凹凸を付けました。そしてオブジェクトを公転・自転させました。<br>
+   板にはエイリアンと男性のイラストを使いました。テクスチャマッピングをするときは、元のイラストをphotoshopで切り取った後貼り付けました。
+   そして、2種類の板を少し動かしました。<br>
+ </p>
  <script>
       // ページの読み込みを待つ
       window.addEventListener('DOMContentLoaded', init);
@@ -75,12 +79,12 @@
         const otaku_material = new THREE.SpriteMaterial({ map: otaku_texture,});
         const otaku_sprite = new THREE.Sprite(otaku_material);
         otaku_sprite.position.y = 0.3;
-        otaku_sprite.position.x = 1.8;
+        otaku_sprite.position.x = 2;
         otaku_sprite.scale.set(0.5, 0.5, 0.5);
         const material0 = new THREE.SpriteMaterial({ map: otaku_texture,});
         const sprite0 = new THREE.Sprite(material0);
         sprite0.position.y = 0.3;
-        sprite0.position.x = -1.8;
+        sprite0.position.x = -2;
         sprite0.scale.set(0,0,0);
         const otaku = new THREE.Group();
         otaku.add(otaku_sprite);
