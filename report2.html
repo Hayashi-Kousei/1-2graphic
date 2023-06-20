@@ -112,9 +112,9 @@
         ball.receiveShadow = true;
         //scene.add(ball);
         
-        var just_ball_geometry = new THREE.SphereGeometry(0,32,32);
+        var just_ball_geometry = new THREE.SphereGeometry(0,0,0);
         var just_ball = new THREE.Mesh(ball_geometry, ball_mat);
-        ball.position.set(1,2.4,-2);
+        just_ball.position.set(1,2.4,-2);
 
         const mars = new THREE.Group();
         mars.add(ball);
