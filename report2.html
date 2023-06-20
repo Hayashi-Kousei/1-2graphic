@@ -106,15 +106,15 @@
         ball_mat.shininess = 10;
         ball_mat.bumpscale = 0.7;
         //球を作る
-        var ball_geometry = new THREE.SphereGeometry(1, 32, 32);
+        var ball_geometry = new THREE.SphereGeometry(0.5, 32, 32);
         var ball = new THREE.Mesh(ball_geometry, ball_mat);
-        ball.position.set(1, 2.4, 2);
+        ball.position.set(1, 2.4, 4);
         ball.receiveShadow = true;
         //scene.add(ball);
         
         var just_ball_geometry = new THREE.SphereGeometry(0,0,0);
         var just_ball = new THREE.Mesh(ball_geometry, ball_mat);
-        just_ball.position.set(1,2.4,-2);
+        just_ball.position.set(1,2.4,-4);
         just_ball.scale.set(0,0,0);
 
         const mars = new THREE.Group();
@@ -129,8 +129,8 @@
           // レンダリング
           renderer.render(scene, camera);
           requestAnimationFrame(update);
-          ball.rotation.y += 0.02;
-          mars.rotation.y += 0.05;
+          ball.rotation.y += 0.01;
+          mars.rotation.y += 0.02;
           aliens.rotation.y += (Math.random()*0.1);
           if(aliens.position.y <= 0.4){
              aliens.position.y += (Math.random()*0.1);
