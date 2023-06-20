@@ -75,12 +75,12 @@
         const otaku_material = new THREE.SpriteMaterial({ map: otaku_texture,});
         const otaku_sprite = new THREE.Sprite(otaku_material);
         otaku_sprite.position.y = 0.3;
-        otaku_sprite.position.x = 0.7;
+        otaku_sprite.position.x = 1.8;
         otaku_sprite.scale.set(0.5, 0.5, 0.5);
         const material0 = new THREE.SpriteMaterial({ map: otaku_texture,});
         const sprite0 = new THREE.Sprite(material0);
         sprite0.position.y = 0.3;
-        sprite0.position.x = -0.7;
+        sprite0.position.x = -1.8;
         sprite0.scale.set(0,0,0);
         const otaku = new THREE.Group();
         otaku.add(otaku_sprite);
@@ -160,7 +160,7 @@
           mars.rotation.y += 0.02;
           ball2.rotation.x += 0.012;
           jupiter.rotation.z -= 0.03;
-          otaku.rotation.y = -0.05;
+          otaku.rotation.y -= 0.05;
           aliens.rotation.y += (Math.random()*0.1);
           if(aliens.position.y <= 0.4){
              aliens.position.y += (Math.random()*0.1);
