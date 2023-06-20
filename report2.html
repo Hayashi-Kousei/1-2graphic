@@ -108,7 +108,7 @@
         //球を作る
         var ball_geometry = new THREE.SphereGeometry(1, 32, 32);
         var ball = new THREE.Mesh(ball_geometry, ball_mat);
-        ball.position.set(0, 2.4, 0);
+        ball.position.set(1, 2.4, 2);
         ball.receiveShadow = true;
         scene.add(ball);
         
@@ -120,6 +120,7 @@
           renderer.render(scene, camera);
           requestAnimationFrame(update);
           ball.rotation.x += 0.003;
+          ball.position.x += 0.1;
           aliens.rotation.y += (Math.random()*0.1);
           if(aliens.position.y <= 0.4){
              aliens.position.y += (Math.random()*0.1);
