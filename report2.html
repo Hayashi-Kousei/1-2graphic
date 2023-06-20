@@ -129,7 +129,7 @@
         var ball_bump2 = ball_textureloader2.load("img/jupiter2_1k.jpg");
         ball_mat2.bumpMap = ball_bump2;
         ball_mat2.shininess = 10;
-        ball_mat2.bumpscale = 0.7;
+        ball_mat2.bumpscale = 0.4;
         //球を作る
         var ball_geometry2 = new THREE.SphereGeometry(1, 32, 32);
         var ball2 = new THREE.Mesh(ball_geometry2, ball_mat2);
@@ -139,7 +139,7 @@
         
         var just_ball_geometry2 = new THREE.SphereGeometry(0,0,0);
         var just_ball2 = new THREE.Mesh(ball_geometry2, ball_mat2);
-        just_ball2.position.set(2,4.4,-2);
+        just_ball2.position.set(-2,4.4,-2);
         just_ball2.scale.set(0,0,0);
         
         const jupiter = new THREE.Group();
