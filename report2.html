@@ -115,6 +115,7 @@
         var just_ball_geometry = new THREE.SphereGeometry(0,0,0);
         var just_ball = new THREE.Mesh(ball_geometry, ball_mat);
         just_ball.position.set(1,2.4,-2);
+        just_ball.scale.set(0,0,0);
 
         const mars = new THREE.Group();
         mars.add(ball);
@@ -128,8 +129,7 @@
           // レンダリング
           renderer.render(scene, camera);
           requestAnimationFrame(update);
-          ball.rotation.x += 0.003;
-          ball.rotation.y += 0.1;
+          ball.rotation.y += 0.02;
           mars.rotation.y += 0.05;
           aliens.rotation.y += (Math.random()*0.1);
           if(aliens.position.y <= 0.4){
