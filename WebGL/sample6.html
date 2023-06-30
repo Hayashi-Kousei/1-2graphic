@@ -50,37 +50,39 @@
         // フォグ（霞）を有効にする
        // material.fog = true;
 
-        // トーチの作成
-        var cylinderGeometry = new THREE.CylinderGeometry( 50, 30, 200, 8 );
-        //上の底面の半径、下の底面の半径、高さ、何角柱か
-        var cylinderMaterial = new THREE.MeshPhongMaterial( {color: 0xefa92a} );
-        var cylinder = new THREE.Mesh( cylinderGeometry, cylinderMaterial );
-        cylinder.position.set( 0, -100, 0 );
-        scene.add( cylinder );
+        //作っている
+        let geometry = new THREE.Geometry();
+        let material = new THREE.PointsMaterial({
+          //pointsを使用する場合はMaterialのサイズで調整する
+          size:0.1,
+          vertexColors:true
+        });
+        let range = 1000;
 
-        //　炎の作成
+        for (let i = 0; i < range; i++) {
 
-        // set path to texture images
-        // either relative or absolute path
-        VolumetricFire.texturePath = './textures/';
-        var fireWidth  = 100;
-        var fireHeight = 400;
-        var fireDepth  = 100;
-        var sliceSpacing = 10;
+          let pos = getPostion(
+          Math.random() * width,
+          Math.random() * height,
+          Math.random() * width
+          );
 
-        var fire = new VolumetricFire(
-          fireWidth,
-          fireHeight,
-          fireDepth,
-          sliceSpacing,
-          camera
-        );
-        scene.add( fire.mesh );
+        //頂点データを生成
+          let particle = new THREE.Vector3(pos.x,pos.y,pos.z);
 
-        // you can set position, rotation and scale
-        // fire.mesh accepts THREE.mesh features
-        fire.mesh.position.set( 0, fireHeight / 2, 0 );
+          //頂点色を設定
+          let color = new THREE.Color(0xffff);
+                
+          //頂点データをジオメトリに追加
+          geometry.vertices.push(particle);
 
+          //頂点色をジオメトリに追加
+          geometry.colors.push(color);
+
+       }
+
+        point = new THREE.Points(geometry,material);
+        scene.add(point);
 
         // 光源（環境光）
         const ambientLight = new THREE.AmbientLight(0xffffff, 1.0);
