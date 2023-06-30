@@ -125,12 +125,12 @@
 
           var elapsed = clock.getElapsedTime();
 
-          //camera.position.set(
-          //  Math.sin( elapsed * 0.01 ) * 800,
-          //  Math.sin( elapsed * 0.05 ) * 1000,
-          //  Math.cos( elapsed * 0.01 ) * 800
-         // );
-         // camera.lookAt( scene.position );
+          camera.position.set(
+            Math.sin( elapsed * 0.01 ) * 800,
+            Math.sin( elapsed * 0.05 ) * 1000,
+            Math.cos( elapsed * 0.01 ) * 800
+          );
+          camera.lookAt( scene.position );
 
           fire.update( elapsed );
           renderer.render(scene, camera);
