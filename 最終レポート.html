@@ -53,12 +53,12 @@
         var plane_scale = 6;
         var plane = [];
         for(let i=0; i<length; i++){
-           let geometry = new THREE.PlaneGeometry( plane_scale, plane_scale );
-          let material = new THREE.MeshBasicMaterial({
+           let geometry0 = new THREE.PlaneGeometry( plane_scale, plane_scale );
+          let material0 = new THREE.MeshBasicMaterial({
             color: '0xffffff', 
             side: THREE.DoubleSide
           });
-          plane[i] = new THREE.Mesh( geometry, material );
+          plane[i] = new THREE.Mesh( geometry0, material0 );
          
           plane[i].position.x = x_size * (Math.random() - 0.5);
           plane[i].position.y = y_size * (Math.random() - 0.5);
