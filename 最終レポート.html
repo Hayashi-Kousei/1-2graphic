@@ -92,6 +92,22 @@
           box[i].position.z = x_size * (Math.random() - 0.5);
           scene.add( box[i] );
         }
+         var sphere_len = 900;
+        var sphere_scale = 6.5;
+        var sphere = [];
+        for(let i=0: i< sphere_len; i++){
+          const sphere_geometry = new THREE.SphereGeometry( sphere_scale, 32, 2 );
+          let sphere_material = new THREE.MeshBasicMaterial({
+            color: 0xf00,
+            opacity: 0.5,
+            side: THREE.DoubleSide
+          });
+          sphere[i] = new THREE.Mesh( sphere_geometry, sphere_material );
+          sphere[i].position.x = x_size * (Math.random() - 0.5);
+          sphere[i].position.y = y_size * (Math.random() - 0.5);
+          sphere[i].position.z = x_size * (Math.random() - 0.5);
+          scene.add( sphere[i] );
+        }
       
 
         // 光源（環境光）
@@ -112,6 +128,14 @@
             box[i].rotation.y += (Math.random()*0.1);
             box[i].rotation.x += (Math.random()*0.1);
             box[i].rotation.z += (Math.random()*0.1);
+
+            sphere[i].position.x += (random(-5, 5)*0);
+            sphere[i].position.x += (random(-5, 5)*0);
+            sphere[i].position.y += 5.5;
+            if (sphere[i].position.y > height) {
+              sphere[i].position.x = x_size * (Math.random() - 0.5);
+              sphere[i].position.y = 0;
+            }
           }
           
           rot += 0.2; // 毎フレーム角度を0.2度ずつ足していく
