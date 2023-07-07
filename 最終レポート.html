@@ -39,38 +39,9 @@
         // helper
         //const gridHelper = new THREE.GridHelper(1000,20); // size, step
         //scene.add(gridHelper);
-        const axisHelper = new THREE.AxisHelper(1000); //軸の長さ　X：赤、Y：緑、z：青
-        scene.add(axisHelper);
-
-        /*
-        var geometry0 = new THREE.PlaneGeometry( 200, 200 );
-        var material0 = new THREE.MeshBasicMaterial( {color: 0xffffff, side: THREE.DoubleSide} );
-        var plane = new THREE.Mesh( geometry0, material0 );
-        scene.add( plane );
-        */
-
-        /*
-        const x_size = 960;
-        const y_size = 540;
-        var length = 2000;
-        var plane_scale = 6;
-        var plane = [];
-        for(let i=0; i<length; i++){
-          let geometry0 = new THREE.PlaneGeometry( plane_scale, plane_scale );
-          var color = "0x" + Math.floor(Math.random() * 16777215).toString(16);
-          let material0 = new THREE.MeshBasicMaterial({
-            color: Number(color),
-            opacity: 0.75,
-            side: THREE.DoubleSide
-          });
-          plane[i] = new THREE.Mesh( geometry0, material0 );
-         
-          plane[i].position.x = x_size * (Math.random() - 0.5);
-          plane[i].position.y = y_size * (Math.random() - 0.5);
-          plane[i].position.z = x_size * (Math.random() - 0.5);
-          scene.add( plane[i] );
-        }
-        */
+        //const axisHelper = new THREE.AxisHelper(1000); //軸の長さ　X：赤、Y：緑、z：青
+        //scene.add(axisHelper);
+        
         const x_size = window.innerWidth;
         const y_size = window.innerHeight;
         var length = 2000;
@@ -152,19 +123,6 @@
           
           // レンダリング
           requestAnimationFrame( tick );
-
-          var elapsed = clock.getElapsedTime();
-
-          /*
-          camera.position.set(
-            Math.sin( elapsed * 0.01 ) * 800,
-            Math.sin( elapsed * 0.05 ) * 1000,
-            Math.cos( elapsed * 0.01 ) * 800
-          );
-          camera.lookAt( scene.position );
-          */
-          
-          //fire.update( elapsed );
           renderer.render(scene, camera);
         }
       }
