@@ -1,1 +1,140 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
+    <script src="OrbitControls.js"></script>
 
+    <script>
+      // ページの読み込みを待つ
+      window.addEventListener('load', init);
+
+      function init() {
+        // サイズを指定
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+
+        var clock = new THREE.Clock();
+        // レンダラーを作成
+        const renderer = new THREE.WebGLRenderer({
+          canvas: document.querySelector('#myCanvas')
+        });
+        renderer.setSize(width, height);
+        // 光源が関係ないので
+        renderer.setClearColor(0xeee, 1.0);
+
+        // シーンを作成
+        const scene = new THREE.Scene();
+        // シーン全体のフォグ
+        //scene.fog = new THREE.Fog(0x000000, 800, 2000);
+
+        // カメラを作成
+        const camera = new THREE.PerspectiveCamera(45, width / height);
+        // カメラの初期座標を設定
+        camera.position.set(0, 0, 1000);
+
+        // カメラコントローラーを作成
+        const controls = new THREE.OrbitControls(camera);
+        controls.autoRotate = true;
+
+        // helper
+        //const gridHelper = new THREE.GridHelper(1000,20); // size, step
+        //scene.add(gridHelper);
+        //const axisHelper = new THREE.AxisHelper(1000); //軸の長さ　X：赤、Y：緑、z：青
+        //scene.add(axisHelper);
+        
+        const x_size = window.innerWidth;
+        const y_size = window.innerHeight;
+        var length = 2000;
+        var box_scale = 8;
+        var box = [];
+        for(let i=0; i<length; i++){
+          /*箱作成*/
+          let geometry0 = new THREE.BoxGeometry( box_scale, box_scale, box_scale );
+          var color = "0x" + Math.floor(Math.random() * 16777215).toString(16);
+          let material0 = new THREE.MeshBasicMaterial({
+            color: Number(color),
+            opacity: 0.5,
+            side: THREE.DoubleSide
+          });
+          box[i] = new THREE.Mesh( geometry0, material0 );
+         
+          box[i].position.x = x_size * (Math.random() - 0.5);
+          box[i].position.y = y_size * (Math.random() - 0.5);
+          box[i].position.z = x_size * (Math.random() - 0.5);
+          scene.add( box[i] );
+        }
+        var sphere_len = 900;
+        var sphere_scale = 6.5;
+        var sphere = [];
+        for(let i=0; i< sphere_len; i++){
+          const sphere_geometry = new THREE.SphereGeometry( sphere_scale, 32, 2 );
+          var color = "0x800080";
+          let sphere_material = new THREE.MeshBasicMaterial({
+            color: Number(color),
+            opacity: 0.8,
+            side: THREE.DoubleSide
+          });
+          sphere[i] = new THREE.Mesh( sphere_geometry, sphere_material );
+          sphere[i].position.x = x_size * (Math.random() - 0.5);
+          sphere[i].position.y = y_size * (Math.random() - 0.5);
+          sphere[i].position.z = x_size * (Math.random() - 0.5);
+          scene.add( sphere[i] );
+        }
+      
+
+        // 光源（環境光）
+        const ambientLight = new THREE.AmbientLight(0x800080, 1.0);
+        scene.add(ambientLight);
+        
+        var rot = 0;
+        const min = -5;
+        const max = 5;
+        tick();
+
+        // 毎フレーム時に実行されるループイベントです
+        function tick() {
+          for(let i=0; i<length; i++){
+            /*
+            plane[i].rotation.y += (Math.random()*0.1);
+            plane[i].rotation.x += (Math.random()*0.1);
+            plane[i].rotation.z += (Math.random()*0.1);
+            */
+            box[i].rotation.y += (Math.random()*0.1);
+            box[i].rotation.x += (Math.random()*0.1);
+            box[i].rotation.z += (Math.random()*0.1);
+          }
+          for(let i=0; i< sphere_len; i++){
+            sphere[i].position.x += Math.random() * (max - min) + min;
+            sphere[i].position.y += 5.5;
+            if (sphere[i].position.y > height) {
+              sphere[i].position.x = x_size * (Math.random() - 0.5);
+              sphere[i].position.y = 0;
+            }
+          }
+          
+          rot += 0.2; // 毎フレーム角度を0.2度ずつ足していく
+          // ラジアンに変換する
+          const radian = rot * Math.PI / 180;
+          // 角度に応じてカメラの位置を設定
+          camera.position.x = 1000 * Math.sin(radian);
+          camera.position.z = 1000 * Math.cos(radian);
+         
+          camera.lookAt(new THREE.Vector3(0, 0, 0));
+          
+          // レンダリング
+          requestAnimationFrame( tick );
+          renderer.render(scene, camera);
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <canvas id="myCanvas"></canvas>
+    <h1>箱と双円錐</h1>
+    <p>
+      箱と双円錐のパーティクルを作りました。<br>
+      箱の色と大きさはランダムで決まています。また箱は回転しています。<br>
+      双円錐は上半分から上に動いています。大きさはランダムで決め、色は紫です。<br>
+    </p>
+  </body>
+</html>
