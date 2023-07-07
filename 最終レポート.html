@@ -114,7 +114,8 @@
         // 光源（環境光）
         const ambientLight = new THREE.AmbientLight(0xffffff, 1.0);
         scene.add(ambientLight);
-
+        
+        var rot = 0;
         tick();
 
         // 毎フレーム時に実行されるループイベントです
@@ -124,21 +125,30 @@
             plane[i].rotation.x += (Math.random()*0.1);
             plane[i].rotation.z += (Math.random()*0.1);
           }
-
-
+          
+          rot += 0.2; // 毎フレーム角度を0.2度ずつ足していく
+          // ラジアンに変換する
+          const radian = rot * Math.PI / 180;
+          // 角度に応じてカメラの位置を設定
+          camera.position.x = 1000 * Math.sin(radian);
+          camera.position.z = 1000 * Math.cos(radian);
+         
+          camera.lookAt(new THREE.Vector3(0, 0, 0));
           
           // レンダリング
           requestAnimationFrame( tick );
 
           var elapsed = clock.getElapsedTime();
 
+          /*
           camera.position.set(
             Math.sin( elapsed * 0.01 ) * 800,
             Math.sin( elapsed * 0.05 ) * 1000,
             Math.cos( elapsed * 0.01 ) * 800
           );
           camera.lookAt( scene.position );
-
+          */
+          
           //fire.update( elapsed );
           renderer.render(scene, camera);
         }
