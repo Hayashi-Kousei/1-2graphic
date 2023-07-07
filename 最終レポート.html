@@ -49,6 +49,7 @@
         scene.add( plane );
         */
 
+        /*
         const x_size = 960;
         const y_size = 540;
         var length = 2000;
@@ -69,49 +70,29 @@
           plane[i].position.z = x_size * (Math.random() - 0.5);
           scene.add( plane[i] );
         }
-        
-
-        /*
-        // 形状データを作成
-        const SIZE = 3000;
-        // 配置する個数
-        const LENGTH = 3000;
-        // 頂点情報を格納する配列
-        const vertices = [];
-        for (let i = 0; i < LENGTH; i++) {
-          const x = SIZE * (Math.random() - 0.5);
-          const y = SIZE * (Math.random() - 0.5);
-          const z = SIZE * (Math.random() - 0.5);
-          vertices.push(x, y, z);
-        }
-
-        // 形状データを作成
-        const geometry = new THREE.BufferGeometry();
-        geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
-
-        /*
-        var textureloader = new THREE.TextureLoader();
-        var texture = textureloader.load("img/img2.png");
-        var mat = new THREE.MeshPhongMaterial();
-        mat.map = texture;
-        
-
-        
-        // マテリアルを作成
-        const material = new THREE.PointsMaterial({
-          // 一つ一つのサイズ
-          size: 10,
-          // 色  
-          color: 0xffffff,
-          transparent: true
-
-        });
-        
-
-        // 物体を作成
-        const mesh = new THREE.Point(geometry, material);
-        scene.add(mesh); // シーンは任意の THREE.Scene インスタンス
         */
+        const x_size = 960;
+        const y_size = 540;
+        var length = 2000;
+        var box_scale = 8;
+        var box = [];
+        for(let i=0; i<length; i++){
+          /*箱作成*/
+          let geometry0 = new THREE.BoxGeometry( box_scale, box_scale, box_scale );
+          var color = "0x" + Math.floor(Math.random() * 16777215).toString(16);
+          let material0 = new THREE.MeshBasicMaterial({
+            color: Number(color),
+            opacity: 0.75,
+            side: THREE.DoubleSide
+          });
+          box[i] = new THREE.Mesh( geometry0, material0 );
+         
+          box[i].position.x = x_size * (Math.random() - 0.5);
+          box[i].position.y = y_size * (Math.random() - 0.5);
+          box[i].position.z = x_size * (Math.random() - 0.5);
+          scene.add( box[i] );
+        }
+      
 
         // 光源（環境光）
         const ambientLight = new THREE.AmbientLight(0xffffff, 1.0);
@@ -123,9 +104,14 @@
         // 毎フレーム時に実行されるループイベントです
         function tick() {
           for(let i=0; i<length; i++){
+            /*
             plane[i].rotation.y += (Math.random()*0.1);
             plane[i].rotation.x += (Math.random()*0.1);
             plane[i].rotation.z += (Math.random()*0.1);
+            */
+            box[i].rotation.y += (Math.random()*0.1);
+            box[i].rotation.x += (Math.random()*0.1);
+            box[i].rotation.z += (Math.random()*0.1);
           }
           
           rot += 0.2; // 毎フレーム角度を0.2度ずつ足していく
