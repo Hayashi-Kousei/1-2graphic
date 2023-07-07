@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
     <script src="OrbitControls.js"></script>
-
+    <script src="js/common.js"></script>
 
     <script>
       // ページの読み込みを待つ
@@ -43,45 +43,29 @@
         const axisHelper = new THREE.AxisHelper(1000); //軸の長さ　X：赤、Y：緑、z：青
         scene.add(axisHelper);
 
-        // マテリアルを作成する
-        /*
-        const material = new THREE.SpriteMaterial({
-          map: new THREE.TextureLoader().load('img/star.png')
-        });
-        */
-        // フォグ（霞）を有効にする
-       // material.fog = true;
-        /*
-        // トーチの作成
-        var cylinderGeometry = new THREE.CylinderGeometry( 50, 30, 200, 8 );
-        //上の底面の半径、下の底面の半径、高さ、何角柱か
-        var cylinderMaterial = new THREE.MeshPhongMaterial( {color: 0xefa92a} );
-        var cylinder = new THREE.Mesh( cylinderGeometry, cylinderMaterial );
-        cylinder.position.set( 0, -100, 0 );
-        scene.add( cylinder );
 
-        //　炎の作成
+        var geometry = new THREE.PlaneGeometry( 200, 200 );
+        var material0 = new THREE.MeshBasicMaterial( {color: 0xffffff, side: THREE.DoubleSide} );
+        var plane = new THREE.Mesh( geometry, material0 );
+        scene.add( plane );
 
-        // set path to texture images
-        // either relative or absolute path
-        VolumetricFire.texturePath = './textures/firetex.png';
-        var fireWidth  = 100;
-        var fireHeight = 400;
-        var fireDepth  = 100;
-        var sliceSpacing = 10;
-
-        var fire = new VolumetricFire(
-          fireWidth,
-          fireHeight,
-          fireDepth,
-          sliceSpacing,
-          camera
-        );
-        scene.add( fire.mesh );
-
-        // you can set position, rotation and scale
-        // fire.mesh accepts THREE.mesh features
-        fire.mesh.position.set( 0, fireHeight / 2, 0 );
+        var length = 2000;
+        var plane_scale = 6;
+        var plane = [];
+        for(let i=0; i<length; i++){
+           let geometry = new THREE.PlaneGeometry( plane_scale, plane_scale );
+          let material = new THREE.MeshBasicMaterial({
+            color: '0xffffff', 
+            side: THREE.DoubleSide
+          });
+          plane[i] = new THREE.Mesh( geometry, material );
+         
+          plane[i].position.x = x_size * (Math.random() - 0.5);
+          plane[i].position.y = y_size * (Math.random() - 0.5);
+          plane[i].position.z = x_size * (Math.random() - 0.5);
+          scene.add( plane[i] );
+        }
+        
         */
         // 形状データを作成
         const SIZE = 3000;
@@ -100,14 +84,14 @@
         const geometry = new THREE.BufferGeometry();
         geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
 
-        
+        /*
         var textureloader = new THREE.TextureLoader();
         var texture = textureloader.load("img/img2.png");
         var mat = new THREE.MeshPhongMaterial();
         mat.map = texture;
-        
+        */
 
-        /*
+        
         // マテリアルを作成
         const material = new THREE.PointsMaterial({
           // 一つ一つのサイズ
@@ -117,10 +101,10 @@
           transparent: true
 
         });
-        */
+        
 
         // 物体を作成
-        const mesh = new THREE.Mesh(geometry, mat);
+        const mesh = new THREE.Point(geometry, material);
         scene.add(mesh); // シーンは任意の THREE.Scene インスタンス
 
         // 光源（環境光）
@@ -131,6 +115,14 @@
 
         // 毎フレーム時に実行されるループイベントです
         function tick() {
+          for(let i=0; i<length; i++){
+            plane[i].rotation.y += (Math.random()*0.1);
+            plane[i].rotation.x += (Math.random()*0.1);
+            plane[i].rotation.z += (Math.random()*0.1);
+          }
+
+
+          
           // レンダリング
           requestAnimationFrame( tick );
 
