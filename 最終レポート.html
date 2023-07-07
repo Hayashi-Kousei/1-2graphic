@@ -97,10 +97,10 @@
         var sphere = [];
         for(let i=0; i< sphere_len; i++){
           const sphere_geometry = new THREE.SphereGeometry( sphere_scale, 32, 2 );
-           var color = "0xf00"
+          var color = "0x" + Math.floor(Math.random() * 16777215).toString(16);
           let sphere_material = new THREE.MeshBasicMaterial({
             color: Number(color),
-            opacity: 0.5,
+            opacity: 0.3,
             side: THREE.DoubleSide
           });
           sphere[i] = new THREE.Mesh( sphere_geometry, sphere_material );
