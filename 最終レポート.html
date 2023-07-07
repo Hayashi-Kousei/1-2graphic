@@ -100,6 +100,12 @@
         const geometry = new THREE.BufferGeometry();
         geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
 
+        var textureloader = new THREE.TextureLoader();
+        var texture = textureloader.load("img/img2.png");
+        var mat = new THREE.MeshPhongMaterial();
+        mat.map = texture;
+
+        /*
         // マテリアルを作成
         const material = new THREE.PointsMaterial({
           // 一つ一つのサイズ
@@ -107,11 +113,11 @@
           // 色  
           color: 0xffffff,
 
-          map: img/img2.png
         });
+        */
 
         // 物体を作成
-        const mesh = new THREE.Points(geometry, material);
+        const mesh = new THREE.Points(geometry, mat);
         scene.add(mesh); // シーンは任意の THREE.Scene インスタンス
 
         // 光源（環境光）
