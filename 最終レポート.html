@@ -86,7 +86,7 @@
         // 形状データを作成
         const SIZE = 3000;
         // 配置する個数
-        const LENGTH = 1000;
+        const LENGTH = 3000;
         // 頂点情報を格納する配列
         const vertices = [];
         for (let i = 0; i < LENGTH; i++) {
@@ -100,14 +100,14 @@
         const geometry = new THREE.BufferGeometry();
         geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
 
-        /*
+        
         var textureloader = new THREE.TextureLoader();
         var texture = textureloader.load("img/img2.png");
         var mat = new THREE.MeshPhongMaterial();
         mat.map = texture;
-        */
-
         
+
+        /*
         // マテリアルを作成
         const material = new THREE.PointsMaterial({
           // 一つ一つのサイズ
@@ -117,10 +117,10 @@
           transparent: true
 
         });
-        
+        */
 
         // 物体を作成
-        const mesh = new THREE.Points(geometry, material);
+        const mesh = new THREE.Mesh(geometry, mat);
         scene.add(mesh); // シーンは任意の THREE.Scene インスタンス
 
         // 光源（環境光）
