@@ -19,6 +19,8 @@
           canvas: document.querySelector('#myCanvas')
         });
         renderer.setSize(width, height);
+        // 背景の色を設定
+        renderer.setClearColor(0xfff);
         // 光源が関係ないので
         renderer.setClearColor(0x333333, 1.0);
 
