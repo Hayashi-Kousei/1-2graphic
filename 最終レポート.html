@@ -20,7 +20,7 @@
         });
         renderer.setSize(width, height);
         // 光源が関係ないので
-        renderer.setClearColor(0xfff, 1.0);
+        renderer.setClearColor(0xeee, 1.0);
 
         // シーンを作成
         const scene = new THREE.Scene();
@@ -92,7 +92,7 @@
           box[i].position.z = x_size * (Math.random() - 0.5);
           scene.add( box[i] );
         }
-         var sphere_len = 900;
+        var sphere_len = 900;
         var sphere_scale = 6.5;
         var sphere = [];
         for(let i=0: i< sphere_len; i++){
