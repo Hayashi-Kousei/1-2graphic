@@ -10,8 +10,8 @@
 
       function init() {
         // サイズを指定
-        const width = 960;
-        const height = 540;
+        const width = window.innerWidth;
+        const height = window.innerHeight;
 
         var clock = new THREE.Clock();
         // レンダラーを作成
@@ -71,8 +71,8 @@
           scene.add( plane[i] );
         }
         */
-        const x_size = 960;
-        const y_size = 540;
+        const x_size = window.innerWidth;
+        const y_size = window.innerHeight;
         var length = 2000;
         var box_scale = 8;
         var box = [];
