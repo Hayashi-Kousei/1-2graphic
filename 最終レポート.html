@@ -97,8 +97,9 @@
         var sphere = [];
         for(let i=0; i< sphere_len; i++){
           const sphere_geometry = new THREE.SphereGeometry( sphere_scale, 32, 2 );
+           var color = "0xf00"
           let sphere_material = new THREE.MeshBasicMaterial({
-            color: 0xf00,
+            color: Number(color),
             opacity: 0.5,
             side: THREE.DoubleSide
           });
