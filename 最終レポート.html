@@ -130,8 +130,8 @@
             box[i].rotation.y += (Math.random()*0.1);
             box[i].rotation.x += (Math.random()*0.1);
             box[i].rotation.z += (Math.random()*0.1);
-
-            
+          }
+          for(let i=0; i< sphere_len; i++){
             sphere[i].position.x += Math.random() * (max - min) + min;
             sphere[i].position.y += 5.5;
             if (sphere[i].position.y > height) {
